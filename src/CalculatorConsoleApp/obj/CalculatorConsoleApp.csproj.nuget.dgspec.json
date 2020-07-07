@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\CalculatorConsoleApp\\CalculatorConsoleApp\\CalculatorConsoleApp.csproj": {}
+    "C:\\Users\\user\\Desktop\\SimpleCalculatorTU-master\\SimpleCalculatorTU\\src\\CalculatorConsoleApp\\CalculatorConsoleApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\CalculatorConsoleApp\\CalculatorConsoleApp\\CalculatorConsoleApp.csproj": {
+    "C:\\Users\\user\\Desktop\\SimpleCalculatorTU-master\\SimpleCalculatorTU\\src\\CalculatorConsoleApp\\CalculatorConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\CalculatorConsoleApp\\CalculatorConsoleApp\\CalculatorConsoleApp.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\SimpleCalculatorTU-master\\SimpleCalculatorTU\\src\\CalculatorConsoleApp\\CalculatorConsoleApp.csproj",
         "projectName": "CalculatorConsoleApp",
-        "projectPath": "C:\\Users\\user\\source\\repos\\CalculatorConsoleApp\\CalculatorConsoleApp\\CalculatorConsoleApp.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\SimpleCalculatorTU-master\\SimpleCalculatorTU\\src\\CalculatorConsoleApp\\CalculatorConsoleApp.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\CalculatorConsoleApp\\CalculatorConsoleApp\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\SimpleCalculatorTU-master\\SimpleCalculatorTU\\src\\CalculatorConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

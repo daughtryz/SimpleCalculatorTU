@@ -1,4 +1,5 @@
 ﻿using CalculatorConsoleApp.Contracts;
+using CalculatorConsoleApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,15 @@ namespace CalculatorConsoleApp.CoreEngine
 {
     public class Engine : IEngine
     {
-        private readonly ICalculator calculator;
-
+        private ICalculator calculator;
+        private double firstOperand;
+        private double secondOperand;
+        private string operatorValue;
+        private List<ICalculator> calculators;
         public Engine(ICalculator calculator)
         {
             this.calculator = calculator;
+            this.calculators = new List<ICalculator>();
         }
         public void Run()
         {
@@ -37,11 +42,16 @@ namespace CalculatorConsoleApp.CoreEngine
                
                 if(input == "h")
                 {
-                    if(this.calculator.GetHistory().Count > 0)
+                    if(this.calculators.Count > 0)
 
                     {
                         Console.WriteLine("Your history calculations:");
-                        Console.WriteLine(string.Join("\n", this.calculator.GetHistory()));
+                        
+
+                        foreach (var calc in this.calculators)
+                        {
+                            Console.WriteLine(calc.ToString());
+                        }
                         continue;
                     } else
                     {
@@ -49,30 +59,20 @@ namespace CalculatorConsoleApp.CoreEngine
                         continue;
                     }
                     
-                }         
-
-               
-                bool allLettersFromFirstOperand = args[0].All(c => Char.IsLetter(c));
-                bool allLettersFromSecondOperand = args[2].All(c => Char.IsLetter(c));
-
-                if (allLettersFromFirstOperand || allLettersFromSecondOperand)
-                {
-                    throw new Exception("No such operand!");
-                } else if(allLettersFromFirstOperand && allLettersFromSecondOperand)
-                {
-                    throw new Exception("No such operand!");
                 }
-                
-                int firstOperand = int.Parse(args[0]);
-
-                string operatorValue = args[1];
-
-                int secondOperand = int.Parse(args[2]);
-
+       
                
+                if(!double.TryParse(args[0], out this.firstOperand) || !double.TryParse(args[2], out this.secondOperand))
+                {
+                    throw new ArgumentException("Invalida data");
+                }
+                      
 
-                string result = calculator.GetResult(firstOperand, operatorValue, secondOperand);
+                this.operatorValue = args[1];
 
+                 this.calculator = new Calculator(this.firstOperand, this.operatorValue, this.secondOperand);
+                this.calculators.Add(this.calculator);
+                string result = calculator.ToString();
                 Console.WriteLine(result);
             }
        

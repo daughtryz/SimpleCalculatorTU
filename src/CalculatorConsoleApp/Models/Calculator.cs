@@ -10,11 +10,13 @@ namespace CalculatorConsoleApp.Models
     {
         private char[][] board;
 
-        private List<string> historyData;
-        
+       
+        private double firstOperand;
+        private double secondOperand;
+        private string operatorValue;
+        private double result = 0;
         public Calculator()
         {
-            this.historyData = new List<string>();
 
             this.board = new char[][]
         {
@@ -27,51 +29,100 @@ namespace CalculatorConsoleApp.Models
 
         }
 
+        public Calculator(double firstOperand, string operatorValue, double secondOperand) : this()
+        {
+            this.FirstOperand = firstOperand;
+            this.OperatorValue = operatorValue;
+            this.SecondOperand = secondOperand;
+
+        }
+
+
+
+        public double FirstOperand
+        {
+            get { return this.firstOperand; }
+            set
+            {
+
+                if (value.GetType().Name != "Double")
+                {
+                    throw new Exception("No such operand!");
+                }
+                this.firstOperand = value;
+            }
+        }
+
+        public string OperatorValue
+        {
+            get { return operatorValue; }
+            set {
+                if (value != "+" && value != "-" && value != "*" && value != "/")
+                {
+                    throw new Exception("No such operator");
+                }
+                operatorValue = value;
+            }
+        }
+
+        public double SecondOperand
+        {
+            get { return this.secondOperand; }
+            set
+            {
+
+                if (value.GetType().Name != "Double")
+                {
+                    throw new Exception("No such operand!");
+                }
+                this.secondOperand = value;
+            }
+        }
+
+
         public char[][] getBoard()
         {
             return this.board;
         }
 
-        public string GetResult(double firstOperand, string operatorValue, double secondOperand)
-        {
-            if (operatorValue != "+" && operatorValue != "-" && operatorValue != "*" && operatorValue != "/")
-            {
-                throw new Exception("No such operator");
-            }
+      
 
-            if (operatorValue == "/" && secondOperand == 0)
+        private double GetResult()
+        {
+           
+
+            if (this.OperatorValue == "/" && this.SecondOperand == 0)
             {
                 throw new Exception("You cant divide by 0 !");
             }
-            double result = 0;
+            
 
-           if(operatorValue == "+")
+           if(this.OperatorValue == "+")
             {
-                result = firstOperand + secondOperand;
+                this.result = this.FirstOperand + this.SecondOperand;
             } else if(operatorValue == "*")
             {
-                result = firstOperand * secondOperand;
+                this.result = this.FirstOperand * this.SecondOperand;
             }
-            else if (operatorValue == "-")
+            else if (this.OperatorValue == "-")
             {
-                result = firstOperand - secondOperand;
+                this.result = this.FirstOperand - this.SecondOperand;
             }
-            else if (operatorValue == "/")
+            else if (this.OperatorValue == "/")
             {
-                result = firstOperand / secondOperand;
+                this.result = this.FirstOperand / this.SecondOperand;
             }
 
-            string finalResult = $"{firstOperand} {operatorValue} {secondOperand} = {result}";
+           
 
-            this.historyData.Add(finalResult);
-
-            return finalResult;
+            return result;
         }
-        public List<string> GetHistory()
+        
+        public override string ToString()
         {
-
-            return this.historyData.OrderByDescending(x => x).ToList();
+            string finalToStringResult = $"{this.FirstOperand} {this.OperatorValue} {this.SecondOperand} = {this.GetResult()}";
             
+            return finalToStringResult;
         }
         public void VisualizeBoard()
         {

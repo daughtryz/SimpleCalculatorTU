@@ -22,16 +22,16 @@ namespace UnitTestingCalc
         {
            
             var expectedResult = $"{1} + {1} = {2}";
-            
-            Assert.AreEqual(expectedResult, this.calculator.GetResult(1, "+", 1));
+            this.calculator = new Calculator(1, "+", 1);
+            Assert.AreEqual(expectedResult, this.calculator.ToString());
         }
         [Test]
         public void TestIfGetResultMethodWorksWhenSubtract()
         {
             
             var expectedResult = $"{2} - {1} = {1}";
-
-            Assert.AreEqual(expectedResult, this.calculator.GetResult(2, "-", 1));
+            this.calculator = new Calculator(2, "-", 1);
+            Assert.AreEqual(expectedResult, this.calculator.ToString());
         }
 
         [Test]
@@ -39,8 +39,8 @@ namespace UnitTestingCalc
         {
             
             var expectedResult = $"{2} * {1} = {2}";
-
-            Assert.AreEqual(expectedResult, this.calculator.GetResult(2, "*", 1));
+            this.calculator = new Calculator(2, "*", 1);
+            Assert.AreEqual(expectedResult, this.calculator.ToString());
         }
 
         [Test]
@@ -48,30 +48,26 @@ namespace UnitTestingCalc
         {
             
             var expectedResult = $"{5} / {2} = {2.5}";
-
-            Assert.AreEqual(expectedResult, this.calculator.GetResult(5, "/", 2));
+            this.calculator = new Calculator(5, "/", 2);
+            Assert.AreEqual(expectedResult, this.calculator.ToString());
         }
-        [Test]
-        public void TestIfGetResultThrowsExceptionWhenInvalidOperator()
-        {
-            Assert.Throws<Exception>(() => this.calculator.GetResult(1, "_", 1));
-        }
-
+       
         [Test]
         public void TestIfGetResultThrowsExWhenDivisionAndSecondOperatorEqualToZero()
         {
-            Assert.Throws<Exception>(() => this.calculator.GetResult(2, "/", 0));
+            this.calculator = new Calculator(5, "/", 0);
+            Assert.Throws<Exception>(() => this.calculator.ToString());
         }
 
         [Test]
-        public void TestIfHistoryDataListWorks()
+        public void TestIfOperatorThrowsException()
         {
-            var expectedCount = 2;
-            this.calculator.GetResult(2, "*", 2);
-            this.calculator.GetResult(3, "+", 2);
-
-            Assert.AreEqual(expectedCount, this.calculator.GetHistory().Count);
+            
+            Assert.Throws<Exception>(() => this.calculator = new Calculator(5, "_", 2));
         }
+
+       
+
 
     }
 }
